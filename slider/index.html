@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      $(function () {
+        offsetLeft = 1;
+        currentimg = 0;
+        $('.next').on('click', nextSlide);
+        $('.prev').on('click', prevSlide);
+        imgquantity = $('.imgs img').length;
+        console.log(imgquantity);
+        autoscroll = true;
+
+        $('.slider, button').on('mouseover', function () {
+          autoscroll = false;
+        });
+        $('.slider, button').on('mouseout', function () {
+          autoscroll = true;
+        });
+
+        function nextSlide() {
+          currentimg++;
+          if (currentimg > imgquantity - 1) {
+            currentimg = 0;
+          }
+          offsetLeft = -currentimg * 600;
+          $('.imgs').animate(
+            {
+              'margin-left': offsetLeft + 'px',
+            },
+            {
+              duration: 1000,
+              queue: false,
+            }
+          );
+          console.log($('.imgs').css('margin-left'));
+        }
+
+        function prevSlide() {
+          currentimg--;
+          if (currentimg > 0) {
+            currentimg = imgquantity - 1;
+          }
+          offsetLeft = currentimg * 600;
+          $('.imgs').animate(
+            {
+              'margin-left': offsetLeft + 'px',
+            },
+            {
+              duration: 1000,
+              queue: false,
+            }
+          );
+          console.log($('.imgs').css('margin-left'));
+        }
+
+        window.setInterval(everyFrame, 2000);
+
+        function everyFrame() {
+          if (autoscroll) {
+            nextSlide();
+          }
+        }
+      });
+    </script> -->
+  </head>
+  <body>
+    <div class="slider">
+      <h2>Slider</h2>
+      <div class="imgs">
+        <img src="./imgs/1.jpeg" alt="nature" class="current" />
+        <img src="./imgs/2.jpeg" alt="nature" />
+        <img src="./imgs/3.jpeg" alt="nature" />
+        <img src="./imgs/4.jpeg" alt="nature" />
+        <img src="./imgs/5.jpeg" alt="nature" />
+        <img src="./imgs/6.jpeg" alt="nature" />
+        <img src="./imgs/7.jpeg" alt="nature" />
+        <img src="./imgs/8.jpeg" alt="nature" />
+        <img src="./imgs/9.avif" alt="nature" />
+        <img src="./imgs/10.jpeg" alt="nature" />
+      </div>
+      <div class="buttons">
+        <button class="prev"></button>
+        <button class="next"></button>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
